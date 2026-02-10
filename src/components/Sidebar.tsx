@@ -7,7 +7,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
 
 import HomeIcon from "@mui/icons-material/Home";
-import RestaurantIcon from "@mui/icons-material/Restaurant";
+import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonIcon from "@mui/icons-material/Person";
@@ -19,7 +19,7 @@ type SidebarProps = {
 
 const menuItems = [
   { label: "Home", icon: <HomeIcon /> },
-  { label: "Restaurants", icon: <RestaurantIcon /> },
+  { label: "Menu", icon: <RestaurantMenuIcon /> },
   { label: "Orders", icon: <ReceiptLongIcon /> },
   { label: "Cart", icon: <ShoppingCartIcon /> },
   { label: "Profile", icon: <PersonIcon /> },

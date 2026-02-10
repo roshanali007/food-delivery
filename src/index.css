@@ -1,6 +1,12 @@
 @font-face {
   font-family: "monster";
-  src: url("./assets/fonts/mrsmonstercond.ttf") format("truetype");
+  src: url("./assets/fonts/mrsmonsterrotate2.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "monster2";
+  src: url("./assets/fonts/mrsmonsterboldoutital.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
