@@ -1,4 +1,4 @@
-import { Box, Typography ,Button, colors } from "@mui/material"
+import { Box, Typography ,Button } from "@mui/material"
 
 
 const Home = () => {

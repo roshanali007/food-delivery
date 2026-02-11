@@ -8,8 +8,10 @@ import {
   Button,
   CircularProgress,
   Box,
-  Grid,
 } from "@mui/material";
+import Grid from "@mui/material/Grid"; // ✅ CORRECT for MUI v7
+
+
 
 
 type Meal = {
