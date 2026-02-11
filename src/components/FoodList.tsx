@@ -8,8 +8,9 @@ import {
   Button,
   CircularProgress,
   Box,
+  Grid,
 } from "@mui/material";
-import Grid from "@mui/material/Grid";
+
 
 type Meal = {
   id: number;
@@ -25,24 +26,26 @@ const CARD_IMAGE_HEIGHT = 180;
 
 export default function FoodList() {
   const [meals, setMeals] = useState<Meal[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [visibleCount, setVisibleCount] = useState<number>(ITEMS_PER_PAGE);
 
   useEffect(() => {
     fetch("https://free-food-menus-api-two.vercel.app/all")
       .then((res) => res.json())
-      .then((data) => {
-        const allMeals = Object.values(data)
+      .then((data: Record<string, Meal[]>) => {
+        const allMeals: Meal[] = Object.values(data)
           .flat()
           .filter(
-            (meal: any) =>
+            (meal) =>
               meal.img &&
               typeof meal.img === "string" &&
               meal.img.trim() !== ""
           );
+
         setMeals(allMeals);
         setLoading(false);
-      });
+      })
+      .catch(() => setLoading(false));
   }, []);
 
   if (loading) {
@@ -54,22 +57,31 @@ export default function FoodList() {
   }
 
   return (
-    <Container maxWidth="xl" sx={{ mt: 6, mb: 6 ,display:'flex',flexDirection:'column',alignItems:'center'}}>
-      <Typography variant="h4" fontWeight={700} mb={4} fontFamily={'monster'}>
+    <Container
+      maxWidth="xl"
+      sx={{
+        mt: 6,
+        mb: 6,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <Typography variant="h4" fontWeight={700} mb={4} fontFamily="monster">
         Popular Food Items 🍽️
       </Typography>
 
-      <Grid container spacing={3} sx={{display:'flex',justifyContent:'center'}}>
+      <Grid container spacing={3} justifyContent="center">
         {meals.slice(0, visibleCount).map((meal) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={meal.id} >
+          <Grid xs={12} sm={6} md={4} lg={3} key={meal.id}>
             <Card
               sx={{
                 height: "100%",
-                width:'300px',
+                width: 300,
                 borderRadius: 3,
                 display: "flex",
                 flexDirection: "column",
-                alignItems:'center',
+                alignItems: "center",
                 boxShadow: 3,
                 transition: "0.3s",
                 "&:hover": {
@@ -78,7 +90,6 @@ export default function FoodList() {
                 },
               }}
             >
-              
               <CardMedia
                 component="img"
                 image={meal.img}
@@ -89,17 +100,17 @@ export default function FoodList() {
                 }}
               />
 
-              
               <CardContent
                 sx={{
                   flexGrow: 1,
                   display: "flex",
                   flexDirection: "column",
+                  width: "100%",
                 }}
               >
-                
                 <Typography
                   variant="h6"
+                  fontFamily="monster"
                   sx={{
                     fontWeight: 600,
                     mb: 0.5,
@@ -108,15 +119,14 @@ export default function FoodList() {
                     WebkitBoxOrient: "vertical",
                     overflow: "hidden",
                   }}
-                  fontFamily={'monster'}
                 >
                   {meal.name}
                 </Typography>
 
-                
                 <Typography
                   variant="body2"
                   color="text.secondary"
+                  fontFamily="monster"
                   sx={{
                     mb: 1,
                     display: "-webkit-box",
@@ -124,12 +134,10 @@ export default function FoodList() {
                     WebkitBoxOrient: "vertical",
                     overflow: "hidden",
                   }}
-                  fontFamily={'monster'}
                 >
                   {meal.dsc}
                 </Typography>
 
-                
                 <Box
                   sx={{
                     display: "flex",
@@ -137,13 +145,14 @@ export default function FoodList() {
                     mb: 1,
                   }}
                 >
-                  <Typography fontWeight={700} color="error" fontFamily={'monster'}>
+                  <Typography fontWeight={700} color="error" fontFamily="monster">
                     ₹{meal.price}
                   </Typography>
-                  <Typography fontSize={14} fontFamily={'monster'}>⭐ {meal.rate}</Typography>
+                  <Typography fontSize={14} fontFamily="monster">
+                    ⭐ {meal.rate}
+                  </Typography>
                 </Box>
 
-                
                 <Button
                   variant="contained"
                   color="error"
@@ -159,19 +168,17 @@ export default function FoodList() {
       </Grid>
 
       {visibleCount < meals.length && (
-        <Box sx={{ textAlign: "center", mt: 5 }}>
+        <Box sx={{ mt: 5 }}>
           <Button
             variant="outlined"
             color="error"
             size="large"
-            sx={{fontFamily:'monster'}}
-           onClick={() =>
-            setVisibleCount((prev) =>
+            sx={{ fontFamily: "monster" }}
+            onClick={() =>
+              setVisibleCount((prev) =>
                 Math.min(prev + ITEMS_PER_PAGE, meals.length)
-            )
+              )
             }
-            
-
           >
             Show More
           </Button>
