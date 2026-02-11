@@ -75,7 +75,7 @@ export default function FoodList() {
 
       <Grid container spacing={3} justifyContent="center">
         {meals.slice(0, visibleCount).map((meal) => (
-          <Grid xs={12} sm={6} md={4} lg={3} key={meal.id}>
+          <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={meal.id}>
             <Card
               sx={{
                 height: "100%",
