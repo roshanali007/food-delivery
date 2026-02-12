@@ -69,7 +69,7 @@ const Footer = () => {
               📞 +91 90744 49535 
             </Typography>
             <Typography variant="body2" sx={{ color: "#ccc" }} fontFamily={'monster'}>
-              ✉️ support@fooddelivery.com
+              ✉️ support@foodExpress.com
             </Typography>
 
             <Box mt={2}>

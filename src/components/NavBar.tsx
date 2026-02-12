@@ -62,7 +62,7 @@ const NavBar = ({ onFoodClick }: NavBarProps) => {
             variant="h5"
             sx={{ fontFamily: "monster", color: "#080808" }}
           >
-            Food Delivery
+            Food Express
           </Typography>
         </Box>
 
