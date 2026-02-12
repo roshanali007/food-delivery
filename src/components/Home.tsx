@@ -1,7 +1,10 @@
 import { Box, Typography ,Button } from "@mui/material"
 
+type HomeProps = {
+  onOrderNow: () => void;
+};
 
-const Home = () => {
+const Home = ({ onOrderNow }: HomeProps) => {
   return (
     <Box
     
@@ -52,6 +55,7 @@ const Home = () => {
           color="error"
           size="large"
           sx={{ mt: 4, borderRadius: 8 ,fontFamily:'monster2'}}
+          onClick={onOrderNow}
         >
           Order Now
         </Button>

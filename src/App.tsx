@@ -1,22 +1,51 @@
+import { useEffect, useRef } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 
-
-
-import './App.css'
-import FoodList from './components/FoodList'
-import Home from './components/Home'
-import NavBar from './components/NavBar'
-
+import FoodList from "./components/FoodList";
+import Footer from "./components/Footer";
+import Home from "./components/Home";
+import NavBar from "./components/NavBar";
+import Cart from "./components/Cart";
 
 function App() {
+  const foodListRef = useRef<HTMLDivElement | null>(null);
+  const location = useLocation();
 
+  const scrollToFoodList = () => {
+    foodListRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  useEffect(() => {
+    if (location.state?.scrollToFood) {
+      scrollToFoodList();
+    }
+  }, [location]);
 
   return (
     <>
-      <NavBar/>
-      <Home/>
-      <FoodList/>
+      <NavBar onFoodClick={scrollToFoodList} />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Home onOrderNow={scrollToFoodList} />
+              <div ref={foodListRef}>
+                <FoodList />
+              </div>
+              <Footer />
+            </>
+          }
+        />
+
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

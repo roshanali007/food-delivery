@@ -11,6 +11,8 @@ import {
   TextField,
 } from "@mui/material";
 import Grid from "@mui/material/Grid"; 
+import { useAppDispatch } from "../redux/hooks";
+import { addToCart } from "../redux/cartSlice";
 
 
 
@@ -27,11 +29,13 @@ type Meal = {
 const ITEMS_PER_PAGE = 12;
 const CARD_IMAGE_HEIGHT = 180;
 
+
 export default function FoodList() {
   const [meals, setMeals] = useState<Meal[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [visibleCount, setVisibleCount] = useState<number>(ITEMS_PER_PAGE);
   const [search, setSearch] = useState<string>("");
+  const dispatch = useAppDispatch();
 
   
   const prevSearchRef = useRef<string>("");
@@ -216,6 +220,17 @@ export default function FoodList() {
                     color="error"
                     fullWidth
                     sx={{ mt: "auto", borderRadius: 2 }}
+                    onClick={() =>
+                    dispatch(
+                      addToCart({
+                        id: meal.id,
+                        name: meal.name,
+                        price: meal.price,
+                        img: meal.img,
+                        quantity: 1,
+                      })
+                    )
+                  }
                   >
                     Add to Cart
                   </Button>
