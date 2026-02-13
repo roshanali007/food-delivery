@@ -23,7 +23,7 @@ const NavBar = ({ onFoodClick }: NavBarProps) => {
   const navigate = useNavigate();
 
   const cartCount = useAppSelector((state) =>
-    state.cart.items.reduce((sum, i) => sum + i.quantity, 0)
+    state.cart.items.reduce((sum, i) => sum + i.quantity, 0),
   );
 
   return (
@@ -37,7 +37,6 @@ const NavBar = ({ onFoodClick }: NavBarProps) => {
           justifyContent: { md: "space-between" },
         }}
       >
-        {/* LEFT SIDE */}
         <Box
           sx={{
             display: "flex",
@@ -47,7 +46,7 @@ const NavBar = ({ onFoodClick }: NavBarProps) => {
             width: "100%",
           }}
         >
-          <Box sx={{display:'flex'}}>
+          <Box sx={{ display: "flex" }}>
             <IconButton
               onClick={() => setIsOpen(true)}
               sx={{ display: { xs: "inline-flex", md: "none" } }}
@@ -55,7 +54,9 @@ const NavBar = ({ onFoodClick }: NavBarProps) => {
               <MenuIcon fontSize="large" sx={{ color: "#080808" }} />
             </IconButton>
 
-            <DeliveryDiningIcon sx={{ fontSize: 40, color: "#080808" ,padding:'8px' }} />
+            <DeliveryDiningIcon
+              sx={{ fontSize: 40, color: "#080808", padding: "8px" }}
+            />
           </Box>
 
           <Typography
@@ -66,7 +67,6 @@ const NavBar = ({ onFoodClick }: NavBarProps) => {
           </Typography>
         </Box>
 
-        {/* RIGHT SIDE (DESKTOP MENU) */}
         <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
           {menuItems.map((item) => {
             if (item === "Cart") {
@@ -113,7 +113,17 @@ const NavBar = ({ onFoodClick }: NavBarProps) => {
                 </Button>
               );
             }
-
+            if (item === "Orders") {
+              return (
+                <Button
+                  key={item}
+                  onClick={() => navigate("/orders")}
+                  sx={menuButtonStyle}
+                >
+                  Orders
+                </Button>
+              );
+            }
 
             return (
               <Button key={item} sx={menuButtonStyle}>
@@ -129,7 +139,6 @@ const NavBar = ({ onFoodClick }: NavBarProps) => {
         onClose={() => setIsOpen(false)}
         onFoodClick={onFoodClick}
       />
-
     </>
   );
 };

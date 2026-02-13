@@ -1,4 +1,4 @@
-import { Box, Typography ,Button } from "@mui/material"
+import { Box, Typography, Button } from "@mui/material";
 
 type HomeProps = {
   onOrderNow: () => void;
@@ -7,17 +7,15 @@ type HomeProps = {
 const Home = ({ onOrderNow }: HomeProps) => {
   return (
     <Box
-    
       sx={{
         position: "relative",
         height: "80vh",
         width: "100%",
       }}
     >
-      
       <Box
         component="img"
-        src="/mandi.jpg" 
+        src="/mandi.jpg"
         alt="Delicious food"
         sx={{
           width: "100%",
@@ -26,7 +24,6 @@ const Home = ({ onOrderNow }: HomeProps) => {
         }}
       />
 
-      
       <Box
         sx={{
           position: "absolute",
@@ -41,27 +38,31 @@ const Home = ({ onOrderNow }: HomeProps) => {
           px: 2,
         }}
       >
-        <Typography variant="h3" fontWeight="bold" fontFamily={'monster2'} >
+        <Typography variant="h3" fontWeight="bold" fontFamily={"monster2"}>
           Delicious Food, Delivered Fast
         </Typography>
 
-        <Typography variant="h6" sx={{ mt: 2, maxWidth: 600 }} fontFamily={'monster2'}>
-          Order from your favorite restaurants and get fresh, hot meals delivered
-          right to your doorstep.
+        <Typography
+          variant="h6"
+          sx={{ mt: 2, maxWidth: 600 }}
+          fontFamily={"monster2"}
+        >
+          Order from your favorite restaurants and get fresh, hot meals
+          delivered right to your doorstep.
         </Typography>
 
         <Button
           variant="contained"
           color="error"
           size="large"
-          sx={{ mt: 4, borderRadius: 8 ,fontFamily:'monster2'}}
+          sx={{ mt: 4, borderRadius: 8, fontFamily: "monster2" }}
           onClick={onOrderNow}
         >
           Order Now
         </Button>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

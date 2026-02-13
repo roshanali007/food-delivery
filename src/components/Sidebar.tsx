@@ -34,7 +34,7 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
   const navigate = useNavigate();
 
   const cartCount = useAppSelector((state) =>
-    state.cart.items.reduce((sum, i) => sum + i.quantity, 0)
+    state.cart.items.reduce((sum, i) => sum + i.quantity, 0),
   );
 
   const handleClick = (label: string) => {
@@ -45,11 +45,15 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
     }
 
     if (label === "Menu") {
-    navigate("/", { state: { scrollToFood: true } });
-  }
+      navigate("/", { state: { scrollToFood: true } });
+    }
 
     if (label === "Cart") {
       navigate("/cart");
+    }
+
+    if (label === "Orders") {
+      navigate("/orders");
     }
   };
 

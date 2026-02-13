@@ -11,44 +11,57 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { clearCart } from "../redux/cartSlice";
 import { useState } from "react";
-
+import { placeOrder } from "../redux/orderSlice";
 
 const Payment = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const cartItems = useAppSelector(state => state.cart.items);
+  const cartItems = useAppSelector((state) => state.cart.items);
   const [paymentMethod, setPaymentMethod] = useState("cod");
-const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0
+    0,
   );
 
   const handlePlaceOrder = () => {
-  if (paymentMethod === "upi") {
-        if (!isMobile) {
+    const order = {
+      id: Date.now().toString(),
+      items: cartItems,
+      total,
+      date: new Date().toLocaleString(),
+    };
+
+    if (paymentMethod === "upi") {
+      if (!isMobile) {
         alert("📱 UPI payment works only on mobile devices");
         return;
-        }
+      }
 
-        const upiUrl = `upi://pay?pa=roshanalink123@oksbi&pn=Food App&am=${total}&cu=INR`;
-        window.location.href = upiUrl;
-        return;
+      const upiUrl = `upi://pay?pa=roshanalink123@oksbi&pn=Food App&am=${total}&cu=INR`;
+      window.location.href = upiUrl;
+
+      setTimeout(() => {
+        alert("✅ Payment successful!");
+        dispatch(placeOrder(order));
+        dispatch(clearCart());
+        navigate("/");
+      }, 3000);
+
+      return;
     }
 
     alert("✅ Order placed successfully!");
+    dispatch(placeOrder(order));
     dispatch(clearCart());
     navigate("/");
-    };
-
-
+  };
 
   if (cartItems.length === 0) {
     navigate("/");
     return null;
-    }
+  }
 
   return (
     <Box maxWidth={500} mx="auto" mt={5} px={2}>
@@ -62,10 +75,9 @@ const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
         </Typography>
 
         <RadioGroup
-            value={paymentMethod}
-            onChange={(e) => setPaymentMethod(e.target.value)}
-            >
-
+          value={paymentMethod}
+          onChange={(e) => setPaymentMethod(e.target.value)}
+        >
           <FormControlLabel
             value="cod"
             control={<Radio />}

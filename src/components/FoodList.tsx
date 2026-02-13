@@ -10,12 +10,9 @@ import {
   Box,
   TextField,
 } from "@mui/material";
-import Grid from "@mui/material/Grid"; 
+import Grid from "@mui/material/Grid";
 import { useAppDispatch } from "../redux/hooks";
 import { addToCart } from "../redux/cartSlice";
-
-
-
 
 type Meal = {
   id: number;
@@ -29,7 +26,6 @@ type Meal = {
 const ITEMS_PER_PAGE = 12;
 const CARD_IMAGE_HEIGHT = 180;
 
-
 export default function FoodList() {
   const [meals, setMeals] = useState<Meal[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -37,7 +33,6 @@ export default function FoodList() {
   const [search, setSearch] = useState<string>("");
   const dispatch = useAppDispatch();
 
-  
   const prevSearchRef = useRef<string>("");
 
   useEffect(() => {
@@ -50,7 +45,7 @@ export default function FoodList() {
             (meal) =>
               meal.img &&
               typeof meal.img === "string" &&
-              meal.img.trim() !== ""
+              meal.img.trim() !== "",
           );
 
         setMeals(allMeals);
@@ -59,7 +54,6 @@ export default function FoodList() {
       .catch(() => setLoading(false));
   }, []);
 
-  
   useEffect(() => {
     if (search !== prevSearchRef.current) {
       setVisibleCount(ITEMS_PER_PAGE);
@@ -77,14 +71,12 @@ export default function FoodList() {
       const text = `${meal.name} ${meal.dsc}`.toLowerCase();
 
       return words.every((word) => {
-        
         const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
         const regex = new RegExp(`\\b${escaped}`, "i");
         return regex.test(text);
       });
     });
   }, [meals, search]);
-
 
   const itemsToShow = Math.min(visibleCount, filteredMeals.length);
 
@@ -221,16 +213,16 @@ export default function FoodList() {
                     fullWidth
                     sx={{ mt: "auto", borderRadius: 2 }}
                     onClick={() =>
-                    dispatch(
-                      addToCart({
-                        id: meal.id,
-                        name: meal.name,
-                        price: meal.price,
-                        img: meal.img,
-                        quantity: 1,
-                      })
-                    )
-                  }
+                      dispatch(
+                        addToCart({
+                          id: meal.id,
+                          name: meal.name,
+                          price: meal.price,
+                          img: meal.img,
+                          quantity: 1,
+                        }),
+                      )
+                    }
                   >
                     Add to Cart
                   </Button>
@@ -250,7 +242,7 @@ export default function FoodList() {
             sx={{ fontFamily: "monster" }}
             onClick={() =>
               setVisibleCount((prev) =>
-                Math.min(prev + ITEMS_PER_PAGE, filteredMeals.length)
+                Math.min(prev + ITEMS_PER_PAGE, filteredMeals.length),
               )
             }
           >

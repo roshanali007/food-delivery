@@ -1,10 +1,4 @@
-import {
-  Box,
-  Container,
-  Typography,
-  IconButton,
-  Divider,
-} from "@mui/material";
+import { Box, Container, Typography, IconButton, Divider } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -24,51 +18,80 @@ const Footer = () => {
     >
       <Container maxWidth="lg">
         <Grid container spacing={4}>
-          {/* Logo & About */}
-          <Grid size={{xs:12, md:4}} >
+          <Grid size={{ xs: 12, md: 4 }}>
             <Box display="flex" alignItems="center" gap={1} mb={1}>
               <DeliveryDiningIcon fontSize="large" color="warning" />
-              <Typography variant="h6"  fontFamily={'monster'}>
+              <Typography variant="h6" fontFamily={"monster"}>
                 FoodExpress
               </Typography>
             </Box>
-            <Typography variant="body2" sx={{ color: "#ccc" }} fontFamily={'monster'}>
+            <Typography
+              variant="body2"
+              sx={{ color: "#ccc" }}
+              fontFamily={"monster"}
+            >
               Fast & fresh food delivery at your doorstep. Order from your
               favourite restaurants anytime.
             </Typography>
           </Grid>
 
-          {/* Quick Links */}
-          <Grid size={{xs:12, md:4}}>
-            <Typography variant="h6" gutterBottom fontFamily={'monster'}>
+          <Grid size={{ xs: 12, md: 4 }}>
+            <Typography variant="h6" gutterBottom fontFamily={"monster"}>
               Quick Links
             </Typography>
-            <Typography variant="body2" sx={{ color: "#ccc" }} fontFamily={'monster'}>
+            <Typography
+              variant="body2"
+              sx={{ color: "#ccc" }}
+              fontFamily={"monster"}
+            >
               Home
             </Typography>
-            <Typography variant="body2" sx={{ color: "#ccc" }} fontFamily={'monster'}>
+            <Typography
+              variant="body2"
+              sx={{ color: "#ccc" }}
+              fontFamily={"monster"}
+            >
               Restaurants
             </Typography>
-            <Typography variant="body2" sx={{ color: "#ccc" }} fontFamily={'monster'}>
+            <Typography
+              variant="body2"
+              sx={{ color: "#ccc" }}
+              fontFamily={"monster"}
+            >
               Orders
             </Typography>
-            <Typography variant="body2" sx={{ color: "#ccc" }} fontFamily={'monster'}>
+            <Typography
+              variant="body2"
+              sx={{ color: "#ccc" }}
+              fontFamily={"monster"}
+            >
               Contact Us
             </Typography>
           </Grid>
 
-          {/* Contact & Social */}
-          <Grid size={{xs:12, md:4}}>
-            <Typography variant="h6" gutterBottom fontFamily={'monster'}>
+          <Grid size={{ xs: 12, md: 4 }}>
+            <Typography variant="h6" gutterBottom fontFamily={"monster"}>
               Contact
             </Typography>
-            <Typography variant="body2" sx={{ color: "#ccc" }} fontFamily={'monster'}>
+            <Typography
+              variant="body2"
+              sx={{ color: "#ccc" }}
+              fontFamily={"monster"}
+            >
               📍 Tirur, Malappuram
             </Typography>
-            <Typography variant="body2" sx={{ color: "#ccc" }} fontFamily={'monster'}>
-              📞 +91 90744 49535 
+            <Typography
+              variant="body2"
+              sx={{ color: "#ccc" }}
+              fontFamily={"monster"}
+            >
+              📞 +91 90744 49535
             </Typography>
-            <Typography variant="body2" sx={{ color: "#ccc" }} fontFamily={'monster'}>
+            <Typography
+              variant="body2"
+              sx={{ color: "#ccc" }}
+              fontFamily={"monster"}
+            >
               ✉️ support@foodExpress.com
             </Typography>
 
@@ -92,7 +115,7 @@ const Footer = () => {
           variant="body2"
           align="center"
           sx={{ color: "#aaa", pb: 2 }}
-          fontFamily={'monster'}
+          fontFamily={"monster"}
         >
           © {new Date().getFullYear()} FoodExpress. All rights reserved.
         </Typography>

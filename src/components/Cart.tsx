@@ -12,24 +12,18 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import {
-  increaseQty,
-  decreaseQty,
-  removeFromCart,
-} from "../redux/cartSlice";
+import { increaseQty, decreaseQty, removeFromCart } from "../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
-
 
 const Cart = () => {
   const dispatch = useAppDispatch();
-  const cartItems = useAppSelector(state => state.cart.items);
+  const cartItems = useAppSelector((state) => state.cart.items);
 
   const navigate = useNavigate();
 
-
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0
+    0,
   );
 
   if (cartItems.length === 0) {
@@ -46,7 +40,7 @@ const Cart = () => {
         Your Cart
       </Typography>
 
-      {cartItems.map(item => (
+      {cartItems.map((item) => (
         <Card key={item.id} sx={{ display: "flex", mb: 2 }}>
           <CardMedia component="img" image={item.img} sx={{ width: 120 }} />
 
@@ -92,7 +86,6 @@ const Cart = () => {
       >
         Checkout
       </Button>
-
     </Box>
   );
 };
