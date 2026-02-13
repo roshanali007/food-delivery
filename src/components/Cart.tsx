@@ -17,10 +17,15 @@ import {
   decreaseQty,
   removeFromCart,
 } from "../redux/cartSlice";
+import { useNavigate } from "react-router-dom";
+
 
 const Cart = () => {
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector(state => state.cart.items);
+
+  const navigate = useNavigate();
+
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -83,9 +88,11 @@ const Cart = () => {
         variant="contained"
         color="success"
         sx={{ mt: 3 }}
+        onClick={() => navigate("/cart/payment")}
       >
         Checkout
       </Button>
+
     </Box>
   );
 };

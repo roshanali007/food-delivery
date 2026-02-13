@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import Cart from "./components/Cart";
+import Payment from "./components/Payment";
 
 function App() {
   const foodListRef = useRef<HTMLDivElement | null>(null);
@@ -43,6 +44,7 @@ function App() {
         />
 
         <Route path="/cart" element={<Cart />} />
+        <Route path="/cart/payment" element={<Payment/>} />
       </Routes>
     </>
   );
